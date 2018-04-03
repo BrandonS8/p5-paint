@@ -1,7 +1,8 @@
 // setup variables for app
 let color = {r: 0, g: 0, b: 0}
-// set sliders to variables
-const redSlider = document.querySelector('.redSlider')
+
+// set document variables
+const recentColorList = document.querySelector('.recent-colors')
 
 
 // setup sliders to update RGB values
@@ -21,9 +22,26 @@ colorPicker.on("color:change", newColor => {
   color = newColor.rgb
 })
 
-colorPicker.on("input:end", () =>  {
-  console.log(color)
+colorPicker.on("input:end", (c) =>  {
+  if(recentColorList.childNodes.length < 11){
+    addNewSwatch(c)
+  } else {
+    recentColorList.removeChild(recentColorList.lastChild)
+    addNewSwatch(c)
+  }
 })
+
+function addNewSwatch(c){
+  let box = document.createElement('div')
+  box.classList.add("color-box")
+  box.style.background = c.hexString
+  let last = c.rgb
+  box.addEventListener('click', () => {
+    color = last
+    colorPicker.color.rgb = last;
+  })
+  recentColorList.insertBefore(box, recentColorList.childNodes[0])
+}
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight*0.80)
@@ -44,7 +62,3 @@ function mouseDragged(){
       line(mouseX, mouseY, pmouseX, pmouseY)
     }
 }
-
-document.querySelector('.redSlider').addEventListener('change', (e) => {
-  console.log(e.target.value)
-})
