@@ -7,11 +7,27 @@ body{
 }
 .top{
   display: flex;
+  padding: 10px;
+  max-height: 130px;
+  border-bottom: 1px solid #000;
 }
-.recent-colors{
+.colors{
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.swatch-holder{
+  display: flex;
+  width: 409.8px;
+  min-height: 40px;
+  border: 2px solid lightgrey;
 }
 .color-box{
   height: 40px;
-  width: 40px;
+  min-width: 40px;
+  border-right: 1px solid white;
+}
+.saved-colors{
+  overflow: scroll;
 }
