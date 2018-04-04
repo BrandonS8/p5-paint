@@ -31,3 +31,12 @@ body{
 .saved-colors{
   overflow: scroll;
 }
+.size{
+  margin: 0;
+  padding: 0;
+}
+.sizeSlider{
+  margin: -20px;
+  padding: 0;
+  transform: rotate(-90deg)
+}
